@@ -1,11 +1,21 @@
-import { createContext, useState, useEffect } from 'react'
-import { faker } from '@faker-js/faker'
+import {
+  createContext,
+  useState,
+  useEffect
+} from 'react'
+import {
+  faker
+} from '@faker-js/faker'
 import Link from 'next/link'
-import { useRouter } from 'next/router';
+import {
+  useRouter
+} from 'next/router';
 
 export const SolWagContext = createContext()
 
-export const SolWagProvider = ({ children }) => {
+export const SolWagProvider = ({
+  children
+}) => {
   const router = useRouter();
   const [pickup, setPickup] = useState('')
   const [dropoff, setDropoff] = useState('')
@@ -35,8 +45,8 @@ export const SolWagProvider = ({ children }) => {
   }, [currentAccount])
 
   useEffect(() => {
-    if (!pickupCoordinates || !dropoffCoordinates) return
-    ;(async () => {
+    if (!pickupCoordinates || !dropoffCoordinates) return;
+    (async () => {
       try {
         const response = await fetch('/api/map/getDuration', {
           method: 'POST',
@@ -59,32 +69,38 @@ export const SolWagProvider = ({ children }) => {
 
   const checkIfWalletIsConnected = async () => {
     try {
-        const { solana } = window;
+      const {
+        solana
+      } = window;
 
-        if (solana) {
-            if (solana.isPhantom) {
-                // console.log("Wallet Found");
-                const response = await solana.connect({ onlyIfTrusted: true });
-                // console.log(
-                //   "connected with publickey:",
-                //   response.publicKey.toString()
-                // );
-                setCurrentAccount(response.publicKey.toString());
-            }
-        } else {
-            alert("Get a phantom wallet")
-            console.log("Get a phantom wallet");
+      if (solana) {
+        if (solana.isPhantom) {
+          // console.log("Wallet Found");
+          const response = await solana.connect({
+            onlyIfTrusted: true
+          });
+          // console.log(
+          //   "connected with publickey:",
+          //   response.publicKey.toString()
+          // );
+          setCurrentAccount(response.publicKey.toString());
         }
+      } else {
+        alert("Get a phantom wallet")
+        console.log("Get a phantom wallet");
+      }
     } catch (error) {
-        alert(error);
+      // alert(error);
     }
-};
+  };
 
-  
+
 
   const connectWallet = async () => {
     checkIfWalletIsConnected();
-    const { solana } = window;
+    const {
+      solana
+    } = window;
     if (solana) {
       const response = await solana.connect();
       // console.log("connected with public key", response.publicKey);
@@ -147,7 +163,8 @@ export const SolWagProvider = ({ children }) => {
 
   useEffect(() => {
     if (pickup && dropoff) {
-      ;(async () => {
+      ;
+      (async () => {
         await Promise.all([
           createLocationCoordinatePromise(pickup, 'pickup'),
           createLocationCoordinatePromise(dropoff, 'dropoff'),
@@ -187,9 +204,9 @@ export const SolWagProvider = ({ children }) => {
     }
   }
 
-  return (
-    <SolWagContext.Provider
-      value={{
+  return ( <
+    SolWagContext.Provider value = {
+      {
         pickup,
         setPickup,
         dropoff,
@@ -214,9 +231,11 @@ export const SolWagProvider = ({ children }) => {
         setOffer,
         time,
         setTime
-      }}
-    >
-      {children}
-    </SolWagContext.Provider>
+      }
+    } >
+    {
+      children
+    } <
+    /SolWagContext.Provider>
   )
 }
