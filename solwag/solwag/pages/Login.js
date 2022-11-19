@@ -1,6 +1,3 @@
-import { useState } from "react";
-// import Image from "next/image";
-// import PhantomLogo from '../assets/phantomLogo.png';
 import { useContext } from 'react';
 import { SolWagContext } from '../context/solWagContext';
 
@@ -11,10 +8,8 @@ const style = {
     connectButton: `bg-indigo-600 py-2 px-4 rounded-xl hover:bg-indigo-900`
     // button: ``
 }
-
 const Login = () => {
     const { connectWallet } = useContext(SolWagContext);
-    
     return (
         <div className={style.wrapper}>
             <div className={style.container}>
@@ -27,5 +22,4 @@ const Login = () => {
         </div>
     )
 }
-
 export default Login
