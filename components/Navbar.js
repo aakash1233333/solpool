@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
         <div className={style.menuItem} onClick={()=>{setOffer('hidden'); setRide('block'); console.log(offer)}}>Ride Pool</div>
         <div className={style.menuItem} onClick={()=>{setOffer('block'); setRide('hidden')}}>Offer Pool</div>
-        <div className={`${style.menuItem} md:block hidden`}>White Paper</div>
+        <div className={`${style.menuItem} md:block hidden`}><a href="https://docs.google.com/document/d/1zsikHSiVQscm2C_g5148DYDx7WeUF6isvKnBppvdzWg/edit?usp=sharing" target="blank" rel="noreferrer">White Paper</a></div>
       </div>
       <div className={`${style.rightMenu} md:block hidden`}>
         {/* <div className={style.menuItem}></div> */}

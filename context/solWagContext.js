@@ -204,8 +204,7 @@ export const SolWagProvider = ({
     }
   }
 
-  return ( <
-    SolWagContext.Provider value = {
+  return ( < SolWagContext.Provider value = {
       {
         pickup,
         setPickup,
@@ -235,7 +234,6 @@ export const SolWagProvider = ({
     } >
     {
       children
-    } <
-    /SolWagContext.Provider>
+    } </SolWagContext.Provider>
   )
 }
